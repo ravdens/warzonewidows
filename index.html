@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" 
+x-data="{
+    username: '',
+    loggedIn: false,
+    newMessage: '',
+    password: '',
+    showLimitedMemorials: false,
+    hidePostsUI: false,
+    posts: [
+        {name: 'Karen M.', age: 34, minutes: 2, text: 'He’s been “deploying” in Verdansk for 3 years now. I miss him.'},
+        {name: 'Allison B.', age: 36, minutes: 3, text: 'He said he’d be home by dinner. That was last season.'},
+        {name: 'Tracy H.', age: 42, minutes: 8, text: 'The sound of gunfire helps him sleep now. The sound of dishes doesn’t.'},
+        {name: 'Evelyn D.', age: 47, minutes: 22, text: 'He came back from the front lines… just to deploy again 10 minutes later.'},
+        {name: 'Clara J.', age: 39, minutes: 27, text: 'The living room looks like a forward operating base.'},
+        {name: 'Janet O.', age: 53, minutes: 46, text: 'He said the mission wasn’t over. Neither was the laundry.'},
+        {name: 'Tanya P.', age: 41, minutes: 51, text: 'We share a house, but he’s somewhere in Verdansk.'},
+        {name: 'Gloria V.', age: 48, minutes: 59, text: 'He talks about extraction plans more than vacation plans.'},
+        {name: 'Brenda Y.', age: 51, minutes: 74, text: 'He said we can’t leave the house — “too dangerous out there.”'},
+        {name: 'Kendra N.', age: 37, minutes: 82, text: 'I’m competing with a tactical map for his attention.'},
+        {name: 'Vera M.', age: 49, minutes: 95, text: 'We used to dance. Now he just crouch-walks around the living room.'},
+        {name: 'Chloe B.', age: 29, minutes: 105, text: 'The couch is his command center now.'},
+        {name: 'Isabel A.', age: 35, minutes: 109, text: 'He briefed me on our grocery list like it was a recon mission.'},
+        {name: 'Carla Z.', age: 42, minutes: 118, text: 'We can’t watch TV because the “comms need to be clear.”'},
+        {name: 'Elena Q.', age: 36, minutes: 122, text: 'He told me the kitchen was “secure.” I still don’t know what that means.'},
+        {name: 'Clara D.', age: 39, minutes: 2, text: 'Last time I saw him, he said he’d be back by dinner. That was two seasons ago.'},
+        {name: 'Helen S.', age: 47, minutes: 4, text: 'He wrote once from ‘the front.’ I still don’t know which front he meant.'},
+        {name: 'Renee B.', age: 35, minutes: 6, text: 'Every knock at the door feels like it could be him. It never is.'},
+        {name: 'Nancy H.', age: 53, minutes: 8, text: 'The kettle whistles louder now that he’s gone. Or maybe the house just feels quieter.'},
+        {name: 'Paula E.', age: 41, minutes: 10, text: 'The garden has overgrown. He always promised to cut it back after ‘the mission.’'},
+        {name: 'Diana M.', age: 50, minutes: 14, text: 'They told me to keep the porch light on. It’s been burning for years.'},
+        {name: 'Molly C.', age: 36, minutes: 22, text: 'He said it’d be a quick deployment. I still make two cups of tea every morning.'},
+        {name: 'Janet T.', age: 44, minutes: 24, text: 'The postman doesn’t make eye contact anymore.'},
+        {name: 'Cathy L.', age: 49, minutes: 26, text: 'His jacket still hangs by the door. I don’t have the heart to move it.'},
+        {name: 'Vera K.', age: 52, minutes: 28, text: 'They told me to be proud. Pride feels heavy when you sleep alone.'},
+        {name: 'Gloria N.', age: 40, minutes: 30, text: 'He once said ‘if I’m not back, don’t wait.’ I waited anyway.'},
+        {name: 'Sheryl O.', age: 46, minutes: 34, text: 'The radio crackles sometimes. I still turn my head, hoping.'},
+        {name: 'Barbara I.', age: 55, minutes: 36, text: 'He promised a story for every scar. I never got to hear them all.'},
+        {name: 'Marian V.', age: 42, minutes: 38, text: 'I still set his place at the table. Old habits are harder than grief.'},
+        {name: 'Marilyn G.', age: 37, minutes: 7, text: 'He said he’d be back before nightfall. Now I’m not sure if he’s lost in the field or stuck in the lobby.'},
+        {name: 'Bethany R.', age: 42, minutes: 12, text: 'Every evening, I wait by the door, but it’s the headset that’s lighting up.'},
+        {name: 'Angela K.', age: 34, minutes: 20, text: 'He’s “deploying” again. Sometimes I wonder if he’s on the battlefield or just stuck in a menu.'},
+        {name: 'Diane F.', age: 48, minutes: 25, text: 'He said the mission was quick. It’s been 5 hours and I’m still counting ammo, not minutes.'},
+        {name: 'Christine V.', age: 31, minutes: 30, text: 'The silence between his calls is louder than any explosion I’ve heard.'},
+        {name: 'Janice M.', age: 45, minutes: 40, text: 'I learned to ignore the pinging. Doesn’t help, but at least I’m used to the sound of absence.'},
+        {name: 'Nancy D.', age: 39, minutes: 42, text: 'He’s more alive in the virtual warzone than in our living room.'},
+        {name: 'Clara N.', age: 41, minutes: 60, text: 'He calls me “support,” but I’m not sure if he means emotional or the respawn kind.'},
+        {name: 'Elaine T.', age: 38, minutes: 65, text: 'Sometimes I’m more jealous of his squad than his last deployment.'},
+        {name: 'Ruth P.', age: 50, minutes: 70, text: 'He’s AWOL, but it’s not clear if it’s real war or digital.'},
+        {name: 'Glenda C.', age: 47, minutes: 75, text: 'I’d rather he be fighting actual enemies than camping in the kitchen.'},
+        {name: 'Mona W.', age: 33, minutes: 80, text: 'Every night I pray he doesn’t get caught in a gulag… or worse, a midnight raid.'},
+        {name: 'Tina B.', age: 37, minutes: 95, text: 'The only “mission accomplished” I see is when the dishes are done.'},
+        {name: 'Erin C.', age: 34, minutes: 100, text: 'He left his jacket on the chair. Guess he’s on a long patrol.'},
+        {name: 'Paige M.', age: 40, minutes: 105, text: 'Sometimes I wonder if I’m the only player not in his party.'},
+        {name: 'Gail M.', age: 39, minutes: 14, text: 'I forgot to water the garden again. The plants are just like me—wilting without him.'},
+        {name: 'Janice R.', age: 44, minutes: 28, text: 'Vacuumed the grass this morning. I don’t know why. It just felt right.'},
+        {name: 'Laura B.', age: 36, minutes: 33, text: 'Spent an hour vacuuming the laundry machine. Maybe it’ll suck up the silence.'},
+        {name: 'Pamela S.', age: 41, minutes: 37, text: 'I stood in the kitchen doorway for minutes, just staring out the window. The neighbors must think I’m crazy.'},
+        {name: 'Wendy L.', age: 34, minutes: 42, text: 'I talked to the plants like they’d pass a message to him in Verdansk.'},
+        {name: 'Theresa H.', age: 47, minutes: 48, text: 'Started folding clothes three times over, then unfolded them. Maybe it’s a ritual.'},
+        {name: 'Megan J.', age: 38, minutes: 57, text: 'I found myself pacing the living room, planning imaginary patrol routes past the television.'},
+        {name: 'Linda T.', age: 40, minutes: 71, text: 'I vacuumed the carpet three times yesterday.'},
+        {name: 'Barbara C.', age: 55, minutes: 75, text: 'I found myself standing still in front of the oven, waiting for a sign.'},
+        {name: 'Elaine P.', age: 37, minutes: 78, text: 'I talk to his empty chair. Sometimes I swear it answers back.'},
+        {name: 'Sharon W.', age: 29, minutes: 88, text: 'I left the porch light on all night. Maybe it’s a recon point.'},
+        {name: 'Tracy M.', age: 35, minutes: 97, text: 'I rearranged the furniture twice.'},
+        {name: 'Monica G.', age: 41, minutes: 102, text: 'I set reminders to check the clock every five minutes. Time feels heavier.'},
+        {name: 'Colleen D.', age: 38, minutes: 113, text: 'Sometimes I stand in front of the kitchen window for so long I forget what I was doing.'},
+
+
+    ],
+    lostCount: 152,
+    supportLevel: 0,
+    rotateStart: 0,
+    pageSize: 20,
+    memorialPageSize: 5,
+    emojis: ['😂','😅','🎮','🕹️','🙃','😭','😴','💔','🥲','🤦‍♀️','🫠','⚠️','📡','🎧','📦','🍕','🥤','🛡️','💬','🏠'],
+    decorate(text) {
+        const a = this.emojis; let h = 0; for (let i = 0; i < text.length; i++) { h = (h * 31 + text.charCodeAt(i)) >>> 0; }
+        return `${text} ${a[h % a.length]}`;
+    },
+    visiblePosts() {
+        const all = this.posts;
+        const total = all.length;
+        if (!total) return [];
+        const max = this.pageSize;
+        const pinned = all.filter(p => p.isUser);
+        if (pinned.length >= max) return pinned.slice(0, max);
+        const others = all.filter(p => !p.isUser);
+        const out = pinned.slice();
+        if (others.length > 0 && out.length < max) {
+            const len = others.length;
+            const start = ((this.rotateStart % len) + len) % len;
+            const need = Math.min(max - out.length, len);
+            for (let i = 0; i < need; i++) out.push(others[(start + i) % len]);
+        }
+        return out;
+    },
+    visibleMemorials() {
+        const len = this.memorials.length;
+        if (!len) return [];
+        const n = Math.min(this.memorialPageSize, len);
+        const out = [];
+        for (let i = 0; i < n; i++) out.push(this.memorials[(this.rotateStart + i) % len]);
+        return out;
+    },
+    memorials: [],
+    formatMissing(iso) {
+        const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+        if (days >= 365) { const y = Math.floor(days / 365); return `${y} year${y > 1 ? 's' : ''} missing`; }
+        return `${days} day${days !== 1 ? 's' : ''} missing`;
+    },
+    loadMemorials() {
+        const src = [
+            { name: 'John &quot;Clutch&quot; M.', age: 34, fact: 'Calls out UAVs during grocery runs', missingSince: '2023-02-15', status: 'ACTIVE' },
+            { name: 'Alex &quot;AFK&quot; R.', age: 29, fact: 'Once paused a match to feed the dog', missingSince: '2021-08-03', status: 'MIA' },
+            { name: 'Sam &quot;Sniper&quot; T.', age: 41, fact: 'Thinks the couch is high ground', missingSince: '2022-11-20', status: 'ACTIVE' },
+            { name: 'Chris &quot;Loot Goblin&quot; P.', age: 36, fact: 'Can smell a legendary crate from two rooms away', missingSince: '2020-05-12', status: 'MIA' },
+            { name: 'Ben &quot;Medic&quot; L.', age: 33, fact: 'Carries revive tokens and snacks', missingSince: '2024-01-07', status: 'MIA' },
+            { name: 'Drew &quot;Drop Zone&quot; K.', age: 38, fact: 'Claims showers ruin his warm-up', missingSince: '2019-09-28', status: 'MIA' },
+            { name: 'John &quot;L.&quot;', age: 50, fact: 'Always deploys out of the plane with a pocket full of chia seeds.', missingSince: '2017-09-07', status: 'ACTIVE' },
+            { name: 'Doug &quot;C.&quot; C.', age: 35, fact: 'Knew all the most authentic places in Verdansk', missingSince: '2020-05-01', status: 'ACTIVE' },
+            { name: 'Mark &quot;L.&quot; L.', age: 45, fact: 'Call sign frizbee. Best hide and seek player in all of Rome.', missingSince: '2019-09-28', status: 'ACTIVE' }
+        ];
+        this.memorials = src.map(m => ({ ...m, missingFor: this.formatMissing(m.missingSince) }));
+    },
+    tryPost() {
+        if (!this.loggedIn) {
+            let modal = new bootstrap.Modal(document.getElementById('loginModal'));
+            modal.show();
+            return;
+        }
+        if (this.newMessage.trim() !== '') {
+            const newPost = { name: this.username || 'You', age: '??', minutes: 0, text: this.newMessage, isUser: true, liked: false };
+            this.posts.unshift(newPost);
+            const delay = Math.floor(Math.random() * 17000) + 3000; // 3s to 20s
+            setTimeout(() => { newPost.liked = true; }, delay);
+            this.newMessage = '';
+        }
+    },
+    handleLogin() {
+        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('loginModal'));
+        this.loggedIn = true;
+        modal.hide();
+        const user = (this.username || '').trim().toLowerCase();
+        if (user === 'italy' && this.password === 'italy') {
+            this.showLimitedMemorials = true;
+            this.hidePostsUI = true;
+            setTimeout(() => { window.location.href = 'intro.html'; }, 2000);
+        }
+        this.$nextTick(() => { this.$refs.postInput && this.$refs.postInput.focus && this.$refs.postInput.focus(); });
+    }
+}" 
+ x-init="
+    const comp = $data;
+    comp.loadMemorials();
+    setInterval(() => { comp.lostCount++ }, 5000);
+    setInterval(() => { comp.supportLevel = Math.floor(Math.random() * 101) }, 3000);
+    (function schedule() {
+        const delay = Math.floor(Math.random() * 15000) + 5000;
+        setTimeout(() => {
+            if (Array.isArray(comp.posts) && comp.posts.length > 0) {
+                const idx = Math.floor(Math.random() * comp.posts.length);
+                const msg = comp.posts[idx];
+                comp.posts.unshift({ name: msg.name, age: msg.age, minutes: 0, text: msg.text });
+            }
+            comp.rotateStart = (comp.rotateStart + 1) % Math.max(comp.posts.length, 1);
+            schedule();
+        }, delay);
+    })();
+ "
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warzone Widows Support Group</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            background-color: #B78CA3; /* Dusty Rose */
+            color: #FFFFFF;
+        }
+        /* Force all text on the page to white */
+        body, body * {
+            color: #FFFFFF !important;
+        }
+        header {
+            background-color: #4A4F54; /* Steel Gray */
+            border-bottom: 4px solid #FF6700; /* Vibrant Orange */
+        }
+        .navbar {
+            background-color: #4A4F54 !important; /* Steel Gray */
+            border-bottom: 4px solid #FF6700; /* Vibrant Orange */
+        }
+        .btn-primary {
+            background-color: #FF6700; /* Vibrant Orange */
+            border: none;
+            color: #FFFFFF;
+        }
+        .btn-primary:hover {
+            background-color: #FF6700;
+            filter: brightness(1.05);
+        }
+        .btn-success {
+            background-color: #F4A896; /* Soft Coral */
+            border: none;
+            color: #FFFFFF;
+        }
+        .btn-success:hover {
+            background-color: #F4A896; /* Soft Coral */
+            filter: brightness(1.05);
+            color: #FFFFFF;
+        }
+        .card {
+            background-color: #4A4F54; /* Steel Gray */
+            border: 1px solid #BFA2DB; /* Muted Lavender */
+        }
+        .alert-warning {
+            background-color: #4A4F54; /* Steel Gray */
+            border: 1px solid #BFA2DB; /* Muted Lavender */
+            color: #FFFFFF;
+        }
+        textarea, input {
+            background-color: #4A4F54 !important; /* Steel Gray */
+            color: #FFFFFF !important;
+            border: 1px solid #BFA2DB !important; /* Muted Lavender */
+        }
+        textarea:focus, input:focus {
+            box-shadow: 0 0 0 0.2rem rgba(255, 103, 0, 0.5) !important; /* Vibrant Orange */
+        }
+        footer {
+            background-color: #4A4F54; /* Steel Gray */
+            border-top: 4px solid #FF6700; /* Vibrant Orange */
+        }
+        /* Support meter styling */
+        .progress { background-color: #4A4F54; }
+        .progress-bar.bg-info { background-color: #0d6efd !important; } /* Blue */
+        /* Toast styling to keep contrast */
+        .toast.text-bg-primary { background-color: #FF6700 !important; color: #FFFFFF !important; }
+        /* Make placeholder text white */
+        ::placeholder { color: #FFFFFF !important; opacity: 1; }
+        :-ms-input-placeholder { color: #FFFFFF !important; }
+        ::-ms-input-placeholder { color: #FFFFFF !important; }
+        /* Side poem panels */
+        .poem-side { position: fixed; top: 20%; width: 420px; white-space: nowrap; color: #FFFFFF; font-style: italic; line-height: 1.6; opacity: 0.95; z-index: 2; pointer-events: none; }
+        .poem-left { left: 0; padding-left: 1rem; text-align: left; }
+        .poem-right { right: 0; padding-right: 1rem; text-align: right; }
+        @media (max-width: 991.98px) { .poem-side { display: none; } }
+        /* Like heart styling */
+        .like-heart { font-size: 1.1rem; color: #9aa0a6; opacity: 0.7; transition: color .2s ease, opacity .2s ease, transform .2s ease; }
+        .like-heart.liked { color: #ff4d6d; opacity: 1; transform: scale(1.1); }
+        /* Neon status colors for limited memorial view */
+        .status-neon-green { color: #12F29A; text-shadow: 0 0 6px rgba(18,242,154,.6); }
+        .status-neon-red { color: #FF3B55; text-shadow: 0 0 6px rgba(255,59,85,.6); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark px-3">
+        <a class="navbar-brand" href="#">Warzone Widows of Verdansk</a>
+        <button class="btn btn-primary" 
+                @click="bootstrap.Modal.getOrCreateInstance(document.getElementById('loginModal')).show()" 
+                x-text="loggedIn ? username : 'Login'"></button>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-white py-4 text-center">
+        <h1>Warzone Widows Support Group</h1>
+        <p class="mb-0 fst-italic">For wives who’ve lost their husbands… to Call of Duty: Warzone.</p>
+    </header>
+
+    <!-- Side Poems -->
+    <div class="poem-side poem-left">
+        He left at dawn, into the haze,<br>
+        A silent war, a digital maze.<br>
+        No final call, no last goodbye—<br>
+        Just echoes lost beneath the sky.<br>
+        Between the game and battle’s fog,<br>
+        I mourn my love, lost in Verdansk’s smog.<br>
+    </div>
+    <div class="poem-side poem-right">
+        The circle shrinks, the gas creeps near,<br>
+        A silent threat, both sharp and clear.<br>
+        No armor guards from this unseen foe,<br>
+        In Verdansk’s mist, we fade and go.<br>
+
+        He held his breath, but lost the fight—<br>
+        Vanished in the toxic night.<br>
+    </div>
+
+    <div class="container py-5">
+
+        <!-- Stats -->
+        <div class="alert alert-warning text-center fw-bold mb-4">
+            Husbands lost to Warzone today: <span x-text="lostCount"></span>
+        </div>
+
+        <!-- Support Level Tracker -->
+        <div class="mb-4">
+          <label class="form-label fw-bold">Emotional Support Meter: <span x-text="supportLevel + '%' "></span></label>
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar"
+                 :style="'width: ' + supportLevel + '%'"
+                 :aria-valuenow="supportLevel" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+        </div>
+
+        <!-- Husband Memorial Board -->
+        <div class="card p-3 mb-4 shadow-sm">
+            <h5 class="mb-3">Husband Memorial Board</h5>
+            <template x-for="m in visibleMemorials()" :key="m.name + m.missingFor">
+                <div class="py-2 border-top border-light-subtle">
+                    <template x-if="!showLimitedMemorials">
+                        <div>
+                            <div class="d-flex justify-content-between">
+                                <strong x-text="m.name + ', ' + m.age"></strong>
+                                <span x-text="m.missingFor"></span>
+                            </div>
+                            <div class="fst-italic" x-text="m.fact"></div>
+                        </div>
+                    </template>
+                    <template x-if="showLimitedMemorials">
+                        <div class="d-flex justify-content-between">
+                            <strong x-text="m.name"></strong>
+                            <span class="text-uppercase" :class="m.status === 'MIA' ? 'status-neon-red' : (m.status === 'ACTIVE' ? 'status-neon-green' : '')" x-text="m.status"></span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+
+        <!-- Post new message -->
+        <div class="card p-3 mb-4 shadow-sm" x-show="!hidePostsUI">
+            <textarea class="form-control mb-2" rows="2" placeholder="Share your story..." x-model="newMessage" maxlength="200" x-ref="postInput"></textarea>
+            <small class="text-light d-block mb-2">
+                <span x-text="200 - newMessage.length"></span> characters remaining
+            </small>
+            <button class="btn btn-success" @click="tryPost()">Post</button>
+        </div>
+
+        <!-- Support feed (hidden for special login) -->
+        <div x-show="!hidePostsUI">
+          <template x-for="post in visiblePosts()" :key="post.name + post.minutes + post.text">
+            <div class="card p-3 mb-3 shadow-sm">
+                <div class="d-flex justify-content-between">
+                    <strong x-text="post.name + ', ' + post.age"></strong>
+                    <div class="d-flex align-items-center gap-2">
+                        <span x-text="post.minutes + 'm ago'"></span>
+                        <span class="like-heart" :class="post.liked ? 'liked' : ''" title="Like">&#10084;</span>
+                    </div>
+                </div>
+                <p class="mt-2 mb-0" x-text="decorate(post.text)"></p>
+            </div>
+          </template>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-white text-center py-3 mt-5">
+        &copy; 2025 Warzone Widows Support Group — “Press F to pay respects.”
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #3a3d3f; color: white;">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close btn-close-white" @click="bootstrap.Modal.getOrCreateInstance(document.getElementById('loginModal')).hide()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-3" placeholder="Username" x-model="username">
+                    <input type="password" class="form-control mb-3" placeholder="Password" x-model="password">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" @click="handleLogin()">
+                        <span x-text="loggedIn ? 'Logged in as ' + username : 'Login'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
