@@ -85,6 +85,20 @@
       .radar [anim], .radar .pulse, .radar .blip { display: none; }
     }
 
+    /* Safari-specific fixes */
+    @supports not (mix-blend-mode: screen) {
+      .glitch::before, .glitch::after { 
+        mix-blend-mode: normal; 
+        opacity: 0.3;
+      }
+    }
+    
+    /* Ensure SVG displays correctly in Safari */
+    svg { 
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+
 
 
     /* ---------- HUD CORNERS ---------- */
@@ -108,20 +122,20 @@
 
   <!-- Decorative HUD corners -->
   <svg class="hud-corner hud-tl" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="var(--grid)" stroke-width="2" />
-    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="var(--accent1)" stroke-width="1" opacity=".5" />
+    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="#1a2a3a" stroke-width="2" />
+    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="#00ffc8" stroke-width="1" opacity=".5" />
   </svg>
   <svg class="hud-corner hud-tr" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="var(--grid)" stroke-width="2" />
-    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="var(--accent1)" stroke-width="1" opacity=".5" />
+    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="#1a2a3a" stroke-width="2" />
+    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="#00ffc8" stroke-width="1" opacity=".5" />
   </svg>
   <svg class="hud-corner hud-bl" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="var(--grid)" stroke-width="2" />
-    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="var(--accent1)" stroke-width="1" opacity=".5" />
+    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="#1a2a3a" stroke-width="2" />
+    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="#00ffc8" stroke-width="1" opacity=".5" />
   </svg>
   <svg class="hud-corner hud-br" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="var(--grid)" stroke-width="2" />
-    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="var(--accent1)" stroke-width="1" opacity=".5" />
+    <path d="M4 96 V20 A16 16 0 0 1 20 4 H96" fill="none" stroke="#1a2a3a" stroke-width="2" />
+    <path d="M12 88 V28 A8 8 0 0 1 20 20 H88" fill="none" stroke="#00ffc8" stroke-width="1" opacity=".5" />
   </svg>
 
   <!-- Fullscreen SVG Radar -->
@@ -130,8 +144,8 @@
       <!-- Grid hatch pattern -->
       <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
         <rect width="32" height="32" fill="transparent" />
-        <path d="M0 0H32 M0 0V32" stroke="var(--grid-2)" stroke-width="1" opacity="0.7" />
-        <path d="M0 0H32 M0 0V32" stroke="var(--grid)" stroke-width="0.5" opacity="0.35" transform="scale(0.5)"/>
+        <path d="M0 0H32 M0 0V32" stroke="#0e1722" stroke-width="1" opacity="0.7" />
+        <path d="M0 0H16 M0 0V16" stroke="#1a2a3a" stroke-width="0.5" opacity="0.35"/>
       </pattern>
 
       <!-- Soft glow -->
@@ -165,8 +179,8 @@
 
       <!-- Sweep wedge gradient (fade towards trailing edge) -->
       <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="var(--sweep)" stop-opacity="0.02"/>
-        <stop offset="100%" stop-color="var(--sweep)" stop-opacity="1"/>
+        <stop offset="0%" stop-color="rgba(0, 255, 200, 0.22)" stop-opacity="0.02"/>
+        <stop offset="100%" stop-color="rgba(0, 255, 200, 0.22)" stop-opacity="1"/>
       </linearGradient>
 
     </defs>
@@ -177,20 +191,20 @@
     <g class="radar" mask="url(#soft-vignette)">
       <!-- concentric range rings -->
       <g stroke-linecap="round">
-        <circle r="480" fill="none" stroke="var(--grid)" stroke-width="2" />
-        <circle r="360" fill="none" stroke="var(--grid)" stroke-width="2" />
-        <circle r="240" fill="none" stroke="var(--grid)" stroke-width="2" />
-        <circle r="120" fill="none" stroke="var(--grid)" stroke-width="2" />
+        <circle r="480" fill="none" stroke="#1a2a3a" stroke-width="2" />
+        <circle r="360" fill="none" stroke="#1a2a3a" stroke-width="2" />
+        <circle r="240" fill="none" stroke="#1a2a3a" stroke-width="2" />
+        <circle r="120" fill="none" stroke="#1a2a3a" stroke-width="2" />
       </g>
 
       <!-- crosshair axes -->
-      <g stroke="var(--grid)" stroke-width="2">
+      <g stroke="#1a2a3a" stroke-width="2">
         <path d="M-512 0H512" />
         <path d="M0 -512V512" />
       </g>
 
       <!-- pulsing center ping -->
-      <circle class="pulse" r="0" fill="none" stroke="var(--pulse)" stroke-width="3" opacity=".8">
+      <circle class="pulse" r="0" fill="none" stroke="#00ffc8" stroke-width="3" opacity=".8">
         <animate attributeName="r" values="0;480" dur="3.2s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="0.9;0" dur="3.2s" repeatCount="indefinite" />
       </circle>
@@ -198,13 +212,13 @@
       <!-- radar sweep wedge -->
       <g filter="url(#sweepBlur)">
         <!-- 40° wedge pointing up; rotated continuously -->
-        <path id="wedge" fill="url(#sweepGrad)" d="M0,0 L0,-480 A480,480 0 0 1 335,-335 Z" opacity="0.9" anim>
+        <path id="wedge" fill="url(#sweepGrad)" d="M0,0 L0,-480 A480,480 0 0 1 335,-335 Z" opacity="0.9">
           <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite"/>
         </path>
       </g>
 
       <!-- coordinate ticks -->
-      <g stroke="var(--grid)" opacity="0.65">
+      <g stroke="#1a2a3a" opacity="0.65">
         <!-- minor ticks every 10° -->
         <g id="ticks">
           <!-- generated by hand: 36 lines -->
@@ -251,40 +265,40 @@
       <g id="blips" filter="url(#glow)">
         <!-- Each blip flickers on when the sweep passes; durations are staggered -->
         <g transform="translate(180,-220)">
-          <circle r="3.5" fill="var(--pulse)" opacity="0.1" filter="url(#blip)">
+          <circle r="3.5" fill="#00ffc8" opacity="0.1" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="0s" repeatCount="indefinite"/>
           </circle>
         </g>
         <g transform="translate(-260,-120)">
-          <circle r="4" fill="var(--pulse)" opacity="0.1" filter="url(#blip)">
+          <circle r="4" fill="#00ffc8" opacity="0.1" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="1.1s" repeatCount="indefinite"/>
           </circle>
         </g>
         <g transform="translate(-140,280)">
-          <circle r="3.2" fill="var(--pulse)" opacity="0.1" filter="url(#blip)">
+          <circle r="3.2" fill="#00ffc8" opacity="0.1" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="2.4s" repeatCount="indefinite"/>
           </circle>
         </g>
         <g transform="translate(300,60)">
-          <circle r="3.8" fill="var(--pulse)" opacity="0.1" filter="url(#blip)">
+          <circle r="3.8" fill="#00ffc8" opacity="0.1" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="3.2s" repeatCount="indefinite"/>
           </circle>
         </g>
         <g transform="translate(-40,-360)">
-          <circle r="3.2" fill="var(--pulse)" opacity="0.1" filter="url(#blip)">
+          <circle r="3.2" fill="#00ffc8" opacity="0.1" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="4.5s" repeatCount="indefinite"/>
           </circle>
         </g>
         <g transform="translate(40,-60)">
-          <circle r="2.6" fill="var(--pulse)" opacity="0.12" filter="url(#blip)">
+          <circle r="2.6" fill="#00ffc8" opacity="0.12" filter="url(#blip)">
             <animate attributeName="opacity" values="0;1;0" keyTimes="0;0.08;1" dur="6s" begin="5.1s" repeatCount="indefinite"/>
           </circle>
         </g>
       </g>
 
       <!-- center dot -->
-      <circle r="3" fill="var(--pulse)" />
-      <circle r="12" fill="none" stroke="var(--pulse)" stroke-width="1" opacity="0.35" />
+      <circle r="3" fill="#00ffc8" />
+      <circle r="12" fill="none" stroke="#00ffc8" stroke-width="1" opacity="0.35" />
     </g>
 
     <!-- HUD readout text -->
