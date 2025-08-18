@@ -50,13 +50,13 @@
     /* .glitch::before{ color: var(--accent2); transform: translate(0,0); animation: chroma 700ms steps(12) 0ms both, shake 1100ms steps(18) 60ms both; }
     .glitch::after{ color: var(--accent3); transform: translate(0,0); animation: chroma 700ms steps(12) 0ms reverse both, shake 1100ms steps(18) 60ms reverse both; } */
     .glitch::before {
-        color: var(--accent2);
+        color: #39a0ff;
         transform: translate(0, 0);
         animation: chroma 1050ms steps(12) 0ms both, shake 1650ms steps(18) 60ms both;
     }
 
     .glitch::after {
-        color: var(--accent3);
+        color: #ff3366;
         transform: translate(0, 0);
         animation: chroma 1050ms steps(12) 0ms reverse both, shake 1650ms steps(18) 60ms reverse both;
     }
@@ -91,6 +91,15 @@
         mix-blend-mode: normal; 
         opacity: 0.3;
       }
+    }
+    
+    /* Additional Safari fix for lingering colors */
+    .glitch.stabilized::before {
+      color: transparent !important;
+    }
+    
+    .glitch.stabilized::after {
+      color: transparent !important;
     }
     
     /* Ensure SVG displays correctly in Safari */
