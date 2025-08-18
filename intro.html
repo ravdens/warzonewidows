@@ -63,9 +63,14 @@
 
 
     /* Stabilize after 3s by disabling all glitch animations */
-    .glitch.stabilized{ animation: none !important; filter: drop-shadow(0 8px 40px rgba(0,0,0,0.75)); }
+    .glitch.stabilized{ 
+      animation: none !important; 
+      filter: drop-shadow(0 8px 40px rgba(0,0,0,0.75)) !important;
+    }
     .glitch.stabilized::before,
-    .glitch.stabilized::after{ animation: none !important; }
+    .glitch.stabilized::after{ 
+      animation: none !important; 
+    }
 
     @keyframes chroma{ 0%{transform:translate(0,0);} 50%{transform:translate(12px,-6px);} 100%{transform:translate(0,0);} }
     @keyframes shake{
@@ -95,11 +100,11 @@
     
     /* Additional Safari fix for lingering colors */
     .glitch.stabilized::before {
-      color: transparent !important;
+      display: none !important;
     }
     
     .glitch.stabilized::after {
-      color: transparent !important;
+      display: none !important;
     }
     
     /* Ensure SVG displays correctly in Safari */

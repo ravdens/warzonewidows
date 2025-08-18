@@ -4,7 +4,6 @@ x-data="{
     username: '',
     loggedIn: false,
     newMessage: '',
-    password: '',
     showLimitedMemorials: false,
     hidePostsUI: false,
     posts: [
@@ -143,7 +142,7 @@ x-data="{
         this.loggedIn = true;
         modal.hide();
         const user = (this.username || '').trim().toLowerCase();
-        if (user === 'italy' && this.password === 'italy') {
+        if (user === 'italy') {
             this.showLimitedMemorials = true;
             this.hidePostsUI = true;
             setTimeout(() => { window.location.href = 'intro.html'; }, 2000);
@@ -373,7 +372,6 @@ x-data="{
                 </div>
                 <div class="modal-body">
                     <input type="text" class="form-control mb-3" placeholder="Username" x-model="username">
-                    <input type="password" class="form-control mb-3" placeholder="Password" x-model="password">
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" @click="handleLogin()">
